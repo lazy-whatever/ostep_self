@@ -51,7 +51,7 @@ int main(int argc, char *argv[]) {
         currentCommand = argv[i];
         //simply print out bad command when the first argument in the command is not expected and move on to later commands
         if (argv[i][0] != 'p' && argv[i][0] != 'g' && argv[i][0]!='a' && argv[i][0]!='c' && argv[i][0]!='d'){
-            printf("Bad command. Skipping this line %s", currentCommand);
+            printf("Bad command. Skipping this line %s\n", currentCommand);
         }
         else {
             printf("Command received - %s. Executing...\n", currentCommand);
