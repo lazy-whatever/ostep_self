@@ -101,8 +101,3 @@ and install the tools you'll need.
 
 * [Kernel Threads (Basic Implementation)](concurrency-xv6-threads)
 
-### File Systems
-
-
-
-
