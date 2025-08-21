@@ -103,5 +103,8 @@ and install the tools you'll need.
 
 ### File Systems
 
+### OSTEP git push token
+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
+
 
 

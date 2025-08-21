@@ -5,23 +5,49 @@ a star, and may wrap over lines */
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
+#include <stdbool.h> 
 
-// typedef struct keyValues{
-//     int key;
-//     char* values;
-//     struct keyValues* next;
-// } pairs;
+//check https://stackoverflow.com/questions/252780/why-should-we-typedef-a-struct-so-often-in-c
+//for difference between struct and typedef struct
 
-// pairs* create_keyValues(int key, char* values) {
-//         pairs* newPairs= malloc(sizeof(pairs)); // after typedef, we can use "pairs" name as a variable type in malloc
-//         //or else can write as struct keyValues* newPairs= malloc(sizeof(struct keyValues)); 
-//         if (NULL != newPairs){
-//                 newPairs->key = key;
-//                 newPairs->values=values;
-//                 newPairs->next= NULL;
-//         }
-//         return newPairs;
-// }
+// after typedef, we can use "pairs" name as a variable type in malloc
+//or else can write as struct keyValues* newPairs= malloc(sizeof(struct keyValues)); 
+typedef struct keyValues{
+    int key;
+    char* values;
+    struct keyValues* next;
+} pairs;
+
+pairs* initializingOrAddDB(bool databaseEmpty, int key, char* values, pairs* existingLL){
+   //if database is empty, create the first instance of the database
+   
+   if(databaseEmpty){
+        //initialize a pair pointer
+        pairs* newLL;
+        //create a new node
+        newLL=create_keyValues(key,values);
+    }
+    else{
+        add_keyValues
+    }
+
+}
+pairs* create_keyValues(int key, char* values) {
+        //newPairs as a pointer to the newly allocated pair's memory
+        //it is only able to point to struct type pairs
+
+        //malloc function dynamically allocates memory space for 1 pair struct
+        //malloc returns a void point pointing towards that memory location if succeful
+        //we typecast the void pointer to a pair struct pointer
+        pairs* newPairs= (pairs*)malloc(sizeof(pairs)); 
+        if (newPairs != NULL){
+                newPairs->key = key;
+                newPairs->values=values;
+                newPairs->next= NULL;
+        }
+        //returns a pointer to the memory location of the newly created node
+        return newPairs;
+}
 
 // void delete_words(pairs* oldWords) {
 //         if (NULL != oldWords->next) {
@@ -30,13 +56,14 @@ a star, and may wrap over lines */
 //         free(oldWords);
 // }
 
-// pairs* add_word(words* wordList, char* word) {
-//         words* newWords = create_words(word);
-//         if (NULL != newWords) {
-//                 newWords->next = wordList;
-//         }
-//         return newWords;
-// }
+pairs* add_keyValues(pairs* wordList, char* word) {
+        pairs* KeyToAdd = create_keyValues(key,values)
+        words* newWords = create_words(word);
+        if (NULL != newWords) {
+                newWords->next = wordList;
+        }
+        return newWords;
+}
 
 // main returns an integer
 // argc = command + 1 (the first command to append the program's name as first)
@@ -46,6 +73,14 @@ int main(int argc, char *argv[]) {
     char** separator;
     //struct keyValues loopThrough[];
     char *currentCommand = NULL; 
+    bool databaseEmpty = 1;
+    FILE *file =fopen("database.txt",r);
+    if (file ==NULL){
+        databaseEmpty = 1;
+    }
+    else{
+        databaseEmpty = 0;
+    }
     for (int i = 1; i < argc;i++)
     {
         currentCommand = argv[i];
